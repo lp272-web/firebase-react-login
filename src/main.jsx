@@ -33,7 +33,7 @@ function AppContent() {
 
   return (
     <>
-      <Spin spinning= {loading} fullscreen size="large" />
+      <Spin spinning={loading} fullscreen size="large" styles={{ indicator: {fontsSize: 100, width: 100, height: 100} }} />
       <RouterProvider router={router} />
     </>
   );
