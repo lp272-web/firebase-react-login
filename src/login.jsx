@@ -17,7 +17,7 @@ function Login() {
   const [showSignup, setShowSignup] = useState(false);
   const [status, setStatus] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
-  const { setSpinning } = useAuth();
+  const { setLoading } = useAuth();
 
   const switchForm = () => {
   setIsAnimating(true);
@@ -29,7 +29,7 @@ function Login() {
 };
 
   const handleLogin = async (values) => {
-    setSpinning(true);
+    setLoading(true);
     try {
       //set spinning to true
       const userCredential = await signInWithEmailAndPassword(
@@ -38,21 +38,16 @@ function Login() {
         values.password
       );
       setStatus("Login successful: " + userCredential.user.email);
-      //set spinning to false
-      setSpinning(false);
       navigate("/dashboard");
     } catch (error) {
-      //set spinning to false
-      setSpinning(false);
       setStatus("Error");
     } finally {
-      //set spinning to false
-      setSpinning(false);
+      setLoading(false);
     }
   };
 
   const handleRegister = async (values) => {
-    setSpinning(true);
+    setLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -64,7 +59,7 @@ function Login() {
     } catch (error) {
       setStatus("Error");
     } finally {
-       setSpinning(false);
+       setLoading(false);
     }
   };
 
@@ -119,7 +114,7 @@ function Login() {
     <div className="app-wrapper">
       <div className={`auth-card ${ isAnimating ? "fade-out-right" : "fade-in-left"}`}>
         <h1>Welcome Back!</h1>
-        <h4>Enter your crdentials to access your account</h4>
+        <h4>Enter your credentials to access your account</h4>
         <Form layout="vertical" onFinish={handleLogin} autoComplete="off">
           <Form.Item
             name="email"

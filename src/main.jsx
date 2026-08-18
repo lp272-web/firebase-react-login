@@ -29,11 +29,11 @@ const router = createBrowserRouter([
 ]);
 
 function AppContent() {
-  const { spinning } = useAuth();
+  const { loading } = useAuth();
 
   return (
     <>
-      <Spin spinning={spinning} fullscreen />
+      <Spin spinning= {loading} fullscreen size="large" />
       <RouterProvider router={router} />
     </>
   );
