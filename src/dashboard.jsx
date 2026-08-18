@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase";
 import { Form, Input, Button, Modal } from "antd";
-import "./App.css";
+import "./app.css";
 
 function Dashboard() {
   const [status, setStatus] = useState("");
