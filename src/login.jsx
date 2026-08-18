@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
 import { Form, Input, Button } from "antd";
 import "./app.css";
@@ -20,23 +17,19 @@ function Login() {
   const { setLoading } = useAuth();
 
   const switchForm = () => {
-  setIsAnimating(true);
+    setIsAnimating(true);
 
-  setTimeout(() => {
-    setShowSignup((prev) => !prev);
-    setIsAnimating(false);
-  }, 400);
-};
+    setTimeout(() => {
+      setShowSignup((prev) => !prev);
+      setIsAnimating(false);
+    }, 400);
+  };
 
   const handleLogin = async (values) => {
     setLoading(true);
     try {
       //set spinning to true
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        values.email,
-        values.password
-      );
+      const userCredential = await signInWithEmailAndPassword(auth, values.email, values.password);
       setStatus("Login successful: " + userCredential.user.email);
       navigate("/dashboard");
     } catch (error) {
@@ -52,28 +45,28 @@ function Login() {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         values.email,
-        values.password
+        values.password,
       );
       setStatus("Registration successful: " + userCredential.user.email);
       navigate("/dashboard");
     } catch (error) {
       setStatus("Error");
     } finally {
-       setLoading(false);
+      setLoading(false);
     }
   };
 
   if (showSignup) {
     return (
       <div className="app-wrapper">
-         <div className={`auth-card ${ isAnimating ? "fade-out-left" : "fade-in-right"}`}>
+        <div className={`auth-card ${isAnimating ? "fade-out-left" : "fade-in-right"}`}>
           <h1>Get Started Now</h1>
           <Form layout="vertical" onFinish={handleRegister} autoComplete="off">
             <Form.Item
               name="email"
               rules={[
                 { required: true, message: "Please input your email!" },
-                { type: "email", message: "Please enter a valid email!" }
+                { type: "email", message: "Please enter a valid email!" },
               ]}
             >
               <Input placeholder="Enter your email" />
@@ -95,16 +88,13 @@ function Login() {
 
           <p className="toggle-text">
             Have an account?{" "}
-            <button className="toggle-link" onClick={switchForm}
->
+            <button className="toggle-link" onClick={switchForm}>
               Sign In
             </button>
           </p>
 
           {status && <p className="status-message">{status}</p>}
-        
-
-         </div>
+        </div>
         <div className="image-panel" style={{ backgroundImage: `url(${heroImage})` }}></div>
       </div>
     );
@@ -112,7 +102,7 @@ function Login() {
 
   return (
     <div className="app-wrapper">
-      <div className={`auth-card ${ isAnimating ? "fade-out-right" : "fade-in-left"}`}>
+      <div className={`auth-card ${isAnimating ? "fade-out-right" : "fade-in-left"}`}>
         <h1>Welcome Back!</h1>
         <h4>Enter your credentials to access your account</h4>
         <Form layout="vertical" onFinish={handleLogin} autoComplete="off">
@@ -120,7 +110,7 @@ function Login() {
             name="email"
             rules={[
               { required: true, message: "Please input your email!" },
-              { type: "email", message: "Please enter a valid email!" }
+              { type: "email", message: "Please enter a valid email!" },
             ]}
           >
             <Input placeholder="Email" />
@@ -150,10 +140,8 @@ function Login() {
         {status && <p className="status-message">{status}</p>}
       </div>
       <div className="image-panel" style={{ backgroundImage: `url(${heroImage})` }}></div>
-
     </div>
   );
 }
 
 export default Login;
-

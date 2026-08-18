@@ -33,7 +33,12 @@ function AppContent() {
 
   return (
     <>
-      <Spin spinning={loading} fullscreen size="large" styles={{ indicator: {fontsSize: 100, width: 100, height: 100} }} />
+      <Spin
+        spinning={loading}
+        fullscreen
+        size="large"
+        styles={{ indicator: { fontsSize: 100, width: 100, height: 100 } }}
+      />
       <RouterProvider router={router} />
     </>
   );
@@ -44,5 +49,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <AuthProvider>
       <AppContent />
     </AuthProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

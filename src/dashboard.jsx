@@ -3,7 +3,7 @@ import {
   updatePassword,
   reauthenticateWithCredential,
   EmailAuthProvider,
-  signOut
+  signOut,
 } from "firebase/auth";
 import { auth } from "./firebase";
 import { Form, Input, Button, Modal } from "antd";
@@ -58,7 +58,7 @@ function Dashboard() {
           name="newPassword"
           rules={[
             { required: true, message: "Please enter a new password!" },
-            { min: 6, message: "Password must be at least 6 characters!" }
+            { min: 6, message: "Password must be at least 6 characters!" },
           ]}
         >
           <Input.Password placeholder="New Password" />
@@ -75,8 +75,8 @@ function Dashboard() {
                   return Promise.resolve();
                 }
                 return Promise.reject(new Error("Passwords do not match!"));
-              }
-            })
+              },
+            }),
           ]}
         >
           <Input.Password placeholder="Confirm New Password" />
