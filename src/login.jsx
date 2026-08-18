@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase";
 import { Form, Input, Button } from "antd";
-import "./App.css";
+import "./app.css";
 import { useAuth } from "./authContext";
 
 const heroImage =

@@ -6,7 +6,7 @@ import { Spin } from "antd";
 import { AuthProvider, useAuth } from "./authContext";
 import ProtectedRoute from "./protectedRoute";
 import Login from "./login";
-import Dashboard from "./Dashboard";
+import Dashboard from "./dashboard";
 import OnlyUnauthRoute from "./onlyUnauthRoute";
 
 const router = createBrowserRouter([
