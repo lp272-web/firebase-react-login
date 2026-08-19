@@ -9,6 +9,7 @@ import OnlyUnauthRoute from "./middleware/onlyUnauthRoute";
 import Login from "./components/login";
 import Signup from "./components/signup";
 import Dashboard from "./dashboard";
+import "./app1.scss";
 
 const router = createBrowserRouter([
   {
