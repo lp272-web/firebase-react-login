@@ -3,21 +3,33 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { Spin } from "antd";
 
-import { AuthProvider, useAuth } from "./authContext";
-import ProtectedRoute from "./protectedRoute";
-import Login from "./login";
+import { AuthProvider, useAuth } from "./hooks/authContext";
+import ProtectedRoute from "./middleware/protectedRoute";
+import OnlyUnauthRoute from "./middleware/onlyUnauthRoute";
+import Login from "./components/login";
+import Signup from "./components/signUp";
 import Dashboard from "./dashboard";
-import OnlyUnauthRoute from "./onlyUnauthRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <OnlyUnauthRoute>
+        {" "}
         <Login />
       </OnlyUnauthRoute>
     ),
   },
+
+  {
+    path: "/signup",
+    element: (
+      <OnlyUnauthRoute>
+        <Signup />
+      </OnlyUnauthRoute>
+    ),
+  },
+
   {
     path: "/dashboard",
     element: (

@@ -5,7 +5,7 @@ import {
   EmailAuthProvider,
   signOut,
 } from "firebase/auth";
-import { auth } from "./firebase";
+import { auth } from "./utils/firebase.js";
 import { Form, Input, Button, Modal } from "antd";
 import "./app.css";
 
@@ -23,7 +23,10 @@ function Dashboard() {
     }
 
     try {
-      const credential = EmailAuthProvider.credential(user.email, values.currentPassword);
+      const credential = EmailAuthProvider.credential(
+        user.email,
+        values.currentPassword,
+      );
       await reauthenticateWithCredential(user, credential);
 
       await updatePassword(user, values.newPassword);
@@ -46,10 +49,17 @@ function Dashboard() {
       <p>You are logged in as {auth.currentUser?.email}</p>
 
       <h2>Change Password</h2>
-      <Form form={form} layout="vertical" onFinish={handleChangePassword} autoComplete="off">
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={handleChangePassword}
+        autoComplete="off"
+      >
         <Form.Item
           name="currentPassword"
-          rules={[{ required: true, message: "Please enter your current password!" }]}
+          rules={[
+            { required: true, message: "Please enter your current password!" },
+          ]}
         >
           <Input.Password placeholder="Current Password" />
         </Form.Item>

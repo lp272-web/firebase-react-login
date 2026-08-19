@@ -1,11 +1,12 @@
 import { Routes, Route } from "react-router";
 import Login from "./login";
-import Dashboard from "./Dashboard";
+import Dashboard from "./dashboard";
 import "./App.css";
 import { AuthProvider } from "./authContext";
-import ProtectedRoute from "./protectedRoute";
+import ProtectedRoute from "./middleware/protectedRoute";
 
 function App() {
+  const a = 1;
   return (
     <AuthProvider>
       <Routes>

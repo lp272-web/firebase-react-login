@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from "react-router";
-import { useAuth } from "./authContext";
+import { useAuth } from "../hooks/authContext";
 
-export default function ProtectedRoute({ children }) {
+export default function OnlyUnauthRoute({ children }) {
   const { user, loading } = useAuth();
   const location = useLocation();
 
@@ -9,8 +9,8 @@ export default function ProtectedRoute({ children }) {
     return <div>Verifying authentication session...</div>;
   }
 
-  if (!user) {
-    return <Navigate to="/" state={{ from: location }} replace />;
+  if (user) {
+    return <Navigate to="/dashboard" state={{ from: location }} replace />;
   }
 
   return children;
