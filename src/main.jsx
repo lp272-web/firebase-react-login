@@ -7,7 +7,7 @@ import { AuthProvider, useAuth } from "./hooks/authContext";
 import ProtectedRoute from "./middleware/protectedRoute";
 import OnlyUnauthRoute from "./middleware/onlyUnauthRoute";
 import Login from "./components/login";
-import Signup from "./components/signUp";
+import Signup from "./components/signup";
 import Dashboard from "./dashboard";
 
 const router = createBrowserRouter([
